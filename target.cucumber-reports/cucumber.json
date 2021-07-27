@@ -1,0 +1,90 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2021-07-27T14:02:58.215Z",
+        "line": 10,
+        "name": "Open and run app",
+        "description": "",
+        "id": "frontend-test;open-and-run-app;;2",
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 3148000000,
+              "status": "passed"
+            },
+            "line": 3,
+            "name": "User is logged in",
+            "match": {
+              "location": "StepDefinitions.StepDefs.userIsLoggedIn()"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 1198000000,
+              "status": "passed"
+            },
+            "line": 4,
+            "name": "Add new user with Username as \"George Andrei\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"George Andrei\"",
+                  "offset": 30
+                }
+              ],
+              "location": "StepDefinitions.StepDefs.addNewUserWithUsernameAs(java.lang.String)"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 1203000000,
+              "status": "passed"
+            },
+            "line": 5,
+            "name": "Edit user",
+            "match": {
+              "location": "StepDefinitions.StepDefs.editUserAndModify()"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 278000000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "Delete user",
+            "match": {
+              "location": "StepDefinitions.StepDefs.deleteUser()"
+            },
+            "keyword": "Then "
+          },
+          {
+            "result": {
+              "duration": 333000000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "User is logged out",
+            "match": {
+              "location": "StepDefinitions.StepDefs.goBackToLogin()"
+            },
+            "keyword": "Then "
+          }
+        ]
+      }
+    ],
+    "name": "FrontEnd Test",
+    "description": "",
+    "id": "frontend-test",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/Features/Test.feature",
+    "tags": []
+  }
+]
