@@ -14,17 +14,19 @@ public class StepDefs {
     private static final String BASE_URL = "http://localhost:4200/users";
     WebDriver driver = new ChromeDriver();
     private LoginPage loginPage;
-    private HomePage homePage;
-    private AddUserPage addUserPage;
-    private EditUserPage editUserPage;
-    private DeleteUserPage deleteUserPage;
+    private HomePage homePage = new HomePage(driver);
+    private AddUserPage addUserPage = new AddUserPage(driver);
+    private EditUserPage editUserPage = new EditUserPage(driver);
+    private DeleteUserPage deleteUserPage = new DeleteUserPage(driver);
+    private String username;
 
     @Given("User is logged in")
-    public void userIsLoggedIn() {
+    public void testUserIsLoggedIn() {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         driver.get("http://localhost:4200/");
         // Assert.assertTrue(driver.getTitle().equals("Frontend"));
         loginPage = new LoginPage(driver);
+        driver.manage().window().maximize();
         loginPage.getUsernameElement().sendKeys("User1");
         loginPage.getPasswordElement().sendKeys("Pass1");
         loginPage.getLoginButtonElement().click();
@@ -33,16 +35,14 @@ public class StepDefs {
     }
 
     @Then("Add new user with Username as {string}")
-    public void addNewUserWithUsernameAs(String username) {
+    public void testAddNewUserWithUsernameAs(String username) {
         driver.get(BASE_URL + "/");
-        AddUserPage addUserPage = new AddUserPage(driver);
-//      driver.get(BASE_URL + "/");
-        //    driver.navigate().refresh();
-
+        //driver.get(baseUrl);
+        driver.navigate().refresh();
         addUserPage.getAddUser().click();
-        addUserPage.getAddUsername().sendKeys("Marian1");
+        addUserPage.getAddUsername().sendKeys(username);
         addUserPage.getAddEmail().sendKeys("marcel@marcel.ro1");
-        addUserPage.getAddFullName().sendKeys("George Andrei");
+        addUserPage.getAddFullName().sendKeys("Vlad Andrei");
         addUserPage.getAddPassword().sendKeys("Marcel11");
         addUserPage.getAddTrait1Field().click();
         addUserPage.getAddTrait2Field().click();
@@ -51,31 +51,20 @@ public class StepDefs {
         addUserPage.getAddMaleGenderButton().sendKeys(Keys.SPACE);
         addUserPage.getSubmitButton().click();
         driver.get(BASE_URL + "/");
-        driver.navigate().refresh();
-      //  try {
-            Assert.assertTrue(driver.findElement(By.xpath("//h1[contains(.,'George Andrei')]")).isDisplayed());
-       // } catch (Exception ex) {
-          //  Assert.fail();
-      //  }
-
+        Assert.assertTrue(driver.findElement(By.xpath("//span[contains(.,'" + username + "')]")).isDisplayed());
+        this.username = username;
     }
 
     @And("Edit user")
-    public void editUserAndModify() {
-       EditUserPage editUserPage=new EditUserPage(driver);
-       //editUserPage.getEditUser().click();
-//        addUser();
+    public void testEditUserAndModify() {
         driver.get(BASE_URL + "/");
         driver.navigate().refresh();
-        editUserPage.getEditUser().click();
+        driver.findElement(By.xpath("//span[contains(text(),'" + username + "')]/following::button[contains(text(),'Edit')]")).click();
+        editUserPage.clearFields();
         editUserPage.getEditUsername().click();
-        editUserPage.getEditUsername().clear();
-        editUserPage.getEditUsername().sendKeys("Marian1");
-        editUserPage.getEditEmail().clear();
+        editUserPage.getEditUsername().sendKeys(username);
         editUserPage.getEditEmail().sendKeys("marcel@marcel.ro1");
-        editUserPage.getEditFullName().clear();
         editUserPage.getEditFullName().sendKeys("Marcel User1");
-        editUserPage.getEditPassword().clear();
         editUserPage.getEditPassword().sendKeys("Marcel11");
         editUserPage.getEditSubmitButton().click();
         driver.get(BASE_URL + "/");
@@ -87,29 +76,25 @@ public class StepDefs {
         }
     }
 
-    //
     @Then("Delete user")
-    public void deleteUser() {
-       DeleteUserPage deleteUserPage=new DeleteUserPage(driver);
+    public void testDeleteUser() {
         driver.navigate().refresh();
-        String string = driver.findElement(By.xpath("(//span)[8]")).getText();
-        deleteUserPage.getDeleteUser().click();
-        deleteUserPage.getYes().click();
-
+        //String string = driver.findElement(By.xpath("(//span)[8]")).getText();
+        driver.findElement(By.xpath("//span[contains(text(),'" + username + "')]/following::button[2]")).click();
+        driver.findElement(By.xpath("//button[contains(.,'Yes')]")).click();
         try {
-            Assert.assertFalse(driver.findElement(By.xpath("//span[contains(text(),'" + string + "')]")).isDisplayed());
+            Assert.assertFalse(driver.findElement(By.xpath("//span[contains(text(),'" + username + "')]")).isDisplayed());
         } catch (Exception ex) {
             Assert.assertTrue(true);
         }
     }
 
     @Then("User is logged out")
-    public void goBackToLogin() {
-        HomePage homePage=new HomePage(driver);
+    public void testGoBackToLogin() {
         driver.get(BASE_URL + "/");
         homePage.getBackButton().click();
         Assert.assertTrue(driver.findElement(By.xpath("//button[@class='btn btn-outline-primary'][contains(.,'Login')]")).isDisplayed());
         driver.get(BASE_URL);
-
+        driver.close();
     }
 }

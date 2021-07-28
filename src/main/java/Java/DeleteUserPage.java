@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 @Getter
 public class DeleteUserPage {
-    private String baseUrl = "http://localhost:4200/users";
-    //private String driverPath = "/home/andibalaj/Downloads/geckodriver-v0.29.1-linux64/geckodriver";
     @FindBy(xpath = "(//button[contains(.,'Delete')])[1]")
     private WebElement deleteUser;
     @FindBy(xpath = "(//i[contains(@class,'fas fa-user fa-4x')])[1]")

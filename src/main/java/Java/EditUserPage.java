@@ -1,6 +1,8 @@
 package Java;
 
 import lombok.Getter;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,8 +11,6 @@ import org.openqa.selenium.support.PageFactory;
 @Getter
 public class EditUserPage {
     private String baseUrl = "http://localhost:4200/users";
-    //private String driverPath = "/home/andibalaj/Downloads/geckodriver-v0.29.1-linux64/geckodriver";
-    //@FindBy(xpath = "(//button[@class='btn'][contains(.,'Edit')])[1]")
     @FindBy(xpath = "(//button[contains(.,'Edit')])[1]")
     private WebElement editUser;
     @FindBy(xpath = "//input[contains(@formcontrolname,'username')]")
@@ -46,5 +46,16 @@ public class EditUserPage {
     public EditUserPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
+    }
+    public void clearFields(){
+        editUsername.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        editEmail.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        editFullName.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        editPassword.sendKeys(Keys.chord(Keys.CONTROL, "a", Keys.DELETE));
+        JavascriptExecutor executor=(JavascriptExecutor) driver;
+        if(editTrait1Field.isSelected()) executor.executeScript("trait.click()",editTrait1Field);
+        if(editTrait2Field.isSelected()) executor.executeScript("trait.click()",editTrait2Field);
+        if(editTrait3Field.isSelected()) executor.executeScript("trait.click()",editTrait3Field);
+        if(editTrait4Field.isSelected()) executor.executeScript("trait.click()",editTrait4Field);
     }
 }

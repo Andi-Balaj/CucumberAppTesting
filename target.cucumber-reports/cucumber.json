@@ -3,7 +3,7 @@
     "line": 1,
     "elements": [
       {
-        "start_timestamp": "2021-07-27T14:02:58.215Z",
+        "start_timestamp": "2021-07-28T17:18:48.874Z",
         "line": 10,
         "name": "Open and run app",
         "description": "",
@@ -13,67 +13,67 @@
         "steps": [
           {
             "result": {
-              "duration": 3148000000,
+              "duration": 3609000000,
               "status": "passed"
             },
             "line": 3,
             "name": "User is logged in",
             "match": {
-              "location": "StepDefinitions.StepDefs.userIsLoggedIn()"
+              "location": "StepDefinitions.StepDefs.testUserIsLoggedIn()"
             },
             "keyword": "Given "
           },
           {
             "result": {
-              "duration": 1198000000,
+              "duration": 1491000000,
               "status": "passed"
             },
             "line": 4,
-            "name": "Add new user with Username as \"George Andrei\"",
+            "name": "Add new user with Username as \"UserGeorge88\"",
             "match": {
               "arguments": [
                 {
-                  "val": "\"George Andrei\"",
+                  "val": "\"UserGeorge88\"",
                   "offset": 30
                 }
               ],
-              "location": "StepDefinitions.StepDefs.addNewUserWithUsernameAs(java.lang.String)"
+              "location": "StepDefinitions.StepDefs.testAddNewUserWithUsernameAs(java.lang.String)"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 1203000000,
+              "duration": 1716000000,
               "status": "passed"
             },
             "line": 5,
             "name": "Edit user",
             "match": {
-              "location": "StepDefinitions.StepDefs.editUserAndModify()"
+              "location": "StepDefinitions.StepDefs.testEditUserAndModify()"
             },
             "keyword": "And "
           },
           {
             "result": {
-              "duration": 278000000,
+              "duration": 307000000,
               "status": "passed"
             },
             "line": 6,
             "name": "Delete user",
             "match": {
-              "location": "StepDefinitions.StepDefs.deleteUser()"
+              "location": "StepDefinitions.StepDefs.testDeleteUser()"
             },
             "keyword": "Then "
           },
           {
             "result": {
-              "duration": 333000000,
+              "duration": 458000000,
               "status": "passed"
             },
             "line": 7,
             "name": "User is logged out",
             "match": {
-              "location": "StepDefinitions.StepDefs.goBackToLogin()"
+              "location": "StepDefinitions.StepDefs.testGoBackToLogin()"
             },
             "keyword": "Then "
           }

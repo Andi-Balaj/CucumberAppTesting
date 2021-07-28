@@ -8,9 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 @Getter
 public class LoginPage {
-
-    private String baseUrl = "http://localhost:4200";
-    //private String driverPath = "/home/andibalaj/Downloads/geckodriver-v0.29.1-linux64/geckodriver";
     @FindBy(xpath = "//input[contains(@type,'text')]")
     private WebElement usernameElement;
     @FindBy(xpath = "//input[contains(@type,'password')]")

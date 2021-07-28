@@ -7,4 +7,4 @@ Feature: FrontEnd Test
     Then User is logged out
     Examples:
       | username|
-      | George Andrei |
+      | UserGeorge88 |

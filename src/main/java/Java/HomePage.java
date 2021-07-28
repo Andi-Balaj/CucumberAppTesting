@@ -8,8 +8,6 @@ import org.openqa.selenium.support.PageFactory;
 
 @Getter
 public class HomePage {
-    private String baseUrl = "http://localhost:4200";
-    //private String driverPath = "/home/andibalaj/Downloads/geckodriver-v0.29.1-linux64/geckodriver";
     @FindBy(xpath = "(//span[contains(.,'Add user')])[2]")
     private WebElement addUserButton;
     @FindBy(xpath = "(//button[contains(.,'Delete')])[1]")
@@ -18,7 +16,6 @@ public class HomePage {
     private WebElement editFirstUser;
     @FindBy(xpath = "//button[@class='btn'][contains(.,'arrow_back')]")
     private WebElement backButton;
-
     private WebDriver driver;
 
     public HomePage(WebDriver driver) {
